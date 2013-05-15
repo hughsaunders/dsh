@@ -26,7 +26,7 @@ end
 action :join do
   Package "dsh" do
     only_if { new_resource.admin_user}
-    action :install
+    action node["osops"]["do_package_upgrades"] == true ? :upgrade : :install
     only_if { platform?("ubuntu","debian") }
   end
 
